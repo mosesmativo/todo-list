@@ -6,9 +6,6 @@ export default {
     title: 'Inputs/InputFiled',
     component: InputField,
     tags: ['autodocs'],
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
