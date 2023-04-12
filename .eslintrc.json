@@ -1,36 +1,37 @@
 {
-    "env": {
-      "browser": true,
-      "es6": true
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:storybook/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime"
-    ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "react"
-    ],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
-    "rules": {
-      "no-unused-vars": "warn",
-      "no-console": "error",
-      "react/jsx-boolean-value": "error",
-      "react/jsx-no-undef": "error",
-      "react/jsx-pascal-case": "error",
-      "react/jsx-sort-props": "error",
-      "react/jsx-uses-react": "off",
-      "react/jsx-uses-vars": "error"
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "error",
+    "react/jsx-boolean-value": "error",
+    "react/jsx-no-undef": "error",
+    "react/jsx-pascal-case": "error",
+    "react/jsx-sort-props": "error",
+    "react/jsx-uses-react": "off",
+    "react/jsx-uses-vars": "error"
   }
+}
