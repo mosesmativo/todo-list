@@ -26,6 +26,10 @@
     "rules": {
       "no-unused-vars": "warn",
       "no-console": "error",
+      "react/jsx-boolean-value": "error",
+      "react/jsx-no-undef": "error",
+      "react/jsx-pascal-case": "error",
+      "react/jsx-sort-props": "error",
       "react/jsx-uses-react": "off",
       "react/jsx-uses-vars": "error"
     }
