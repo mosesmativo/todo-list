@@ -1,59 +1,48 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const InputField = ({ label, name, type, onChange, value, placeholder, options }) => {
-  const [inputValue, setInputValue] = useState(value);
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-    onChange(event.target.value);
-  };
-
-  const renderOptions = () => {
-    if (!options) return null;
-    if (type === 'select') {
-      return options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ));
+export const InputField = ({ label, name, type, onChange, value, options }) => {
+  const renderInput = () => {
+    switch (type) {
+      case 'select':
+        return (
+          <select name={name} onChange={onChange} value={value}>
+            <option value="">-- Select {label} --</option>
+            {options.map(({ label, value }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        );
+      case 'radio':
+        return (
+          <>
+            {options.map(({ label, value }) => (
+              <div key={value}>
+                <input
+                  checked={value === value}
+                  id={value}
+                  name={name}
+                  onChange={onChange}
+                  type="radio"
+                  value={value}
+                />
+                <label htmlFor={value}>{label}</label>
+              </div>
+            ))}
+          </>
+        );
+      case 'textarea':
+        return <textarea name={name} onChange={onChange} value={value} />;
+      default:
+        return <input name={name} onChange={onChange} type={type} value={value} />;
     }
-    if (type === 'radio') {
-      return options.map((option) => (
-        <div key={option.value}>
-          <input
-            checked={inputValue === option.value}
-            id={`${name}-${option.value}`}
-            name={name}
-            onChange={handleInputChange}
-            type="radio"
-            value={option.value}
-          />
-          <label htmlFor={`${name}-${option.value}`}>{option.label}</label>
-        </div>
-      ));
-    }
-    return null;
   };
 
   return (
     <div>
       <label htmlFor={name}>{label}</label>
-      {type === 'text' && (
-        <input id={name} name={name} onChange={handleInputChange} placeholder={placeholder} type="text" value={inputValue} />
-      )}
-      {type === 'select' && (
-        <select id={name} name={name} onChange={handleInputChange} value={inputValue}>
-          {renderOptions()}
-        </select>
-      )}
-      {type === 'radio' && renderOptions()}
-      {type === 'textarea' && (
-        <textarea id={name} name={name} onChange={handleInputChange} placeholder={placeholder} value={inputValue} />
-      )}
-      {type === 'checkbox' && (
-        <input id={name} name={name} onChange={handleInputChange} type="checkbox" value={inputValue} />
-      )}
+      {renderInput()}
     </div>
   );
 };
@@ -61,7 +50,6 @@ export const InputField = ({ label, name, type, onChange, value, placeholder, op
 InputField.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
   type: PropTypes.oneOf(['text', 'select', 'radio', 'textarea', 'checkbox']).isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
