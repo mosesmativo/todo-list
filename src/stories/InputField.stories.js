@@ -1,9 +1,10 @@
 import { InputField } from "../components/Inputs/InputField";
+import "../components/Inputs/Inputs.css";
 
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 export default {
-    title: 'Inputs/InputFiled',
+    title: 'Components/Inputs/InputFiled',
     component: InputField,
     tags: ['autodocs'],
 };
@@ -14,7 +15,6 @@ export const Text = {
         label: 'Title Here',
         type: 'text',
         name: 'title',
-        value: 'title',
     },
 };
 export const TextArea = {

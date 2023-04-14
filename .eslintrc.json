@@ -26,7 +26,7 @@
   },
   "rules": {
     "no-unused-vars": "warn",
-    "no-console": "error",
+    // "no-console": "error",
     "react/jsx-boolean-value": "error",
     "react/jsx-no-undef": "error",
     "react/jsx-pascal-case": "error",

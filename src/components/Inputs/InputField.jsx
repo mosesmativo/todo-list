@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import './Inputs.css';
 
 export const InputField = ({ label, name, type, onChange, value, options }) => {
   const [inputValue, setInputValue] = useState(value);
@@ -25,18 +26,18 @@ export const InputField = ({ label, name, type, onChange, value, options }) => {
     <div>
       <label htmlFor={name}>{label}</label>
       {type === 'text' && (
-        <input id={name} name={name} onChange={handleInputChange} type="text" value={inputValue} />
+        <input className="form-control" id={name} name={name} onChange={handleInputChange} type="text" value={inputValue} />
       )}
       {type === 'checkbox' && (
-        <input id={name} name={name} onChange={handleInputChange} type="checkbox" value={value} />
+        <input className="form-check" id={name} name={name} onChange={handleInputChange} type="checkbox" value={inputValue} />
       )}
       {type === 'select' && (
-        <select id={name} name={name} onChange={handleInputChange} value={inputValue}>
+        <select className="form-control" id={name} name={name} onChange={handleInputChange} value={inputValue}>
           {renderOptions()}
         </select>
       )}
       {type === 'textarea' && (
-        <textarea id={name} name={name} onChange={handleInputChange} value={inputValue} />
+        <textarea className="form-control" id={name} name={name} onChange={handleInputChange} rows={5} value={inputValue} />
       )}
     </div>
   );

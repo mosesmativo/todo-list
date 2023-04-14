@@ -5,7 +5,9 @@ import './button.css';
  * Primary UI component for user interaction
  */
 export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
+
   const mode = primary ? 'todo-list-button--primary' : 'todo-list-button--secondary';
+
   return (
     <button
       className={['todo-list-button', `todo-list-button--${size}`, mode].join(' ')}
