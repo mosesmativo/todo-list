@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-
+import { toast } from 'react-hot-toast';
 import './App.scss'
 import { Button } from './components/Buttons/Button'
 import { InputField } from './components/Inputs/InputField';
@@ -30,22 +30,57 @@ function App() {
     })
   }
 
-  function toggleTodo(id, completed) {
+  function toggleTodo(id, complete) {
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
         if (todo.id === id) {
-          return { ...todo, completed }
+          return { ...todo, complete }
         }
 
         return todo
       })
-    })
+    });
+
+    complete ?
+      toast.success('To do Complete', {
+        style: {
+          border: '1px solid #713200',
+          padding: '16px',
+          color: '#713200',
+        },
+        iconTheme: {
+          primary: '#713200',
+          secondary: '#FFFAEE',
+        }
+      }) : toast.success('Todo something', {
+        style: {
+          border: '1px solid #713200',
+          padding: '16px',
+          color: '#713200',
+        },
+        iconTheme: {
+          primary: '#713200',
+          secondary: '#FFFAEE',
+        }
+      });
+
   }
 
   function deleteTodo(id) {
     setTodos(currentTodos => {
       return currentTodos.filter(todo => todo.id !== id)
     })
+    toast.success('To do deleted', {
+      style: {
+        border: '1px solid #713200',
+        padding: '16px',
+        color: '#713200',
+      },
+      iconTheme: {
+        primary: '#713200',
+        secondary: '#FFFAEE',
+      }
+    });
   }
 
   function updateTodo(id, updates) {
@@ -57,26 +92,35 @@ function App() {
         return todo
       })
     )
+    toast.success('To do Updated', {
+      style: {
+        border: '1px solid #713200',
+        padding: '16px',
+        color: '#713200',
+      },
+      iconTheme: {
+        primary: '#713200',
+        secondary: '#FFFAEE',
+      }
+    });
   }
 
 
   return (
     <div className="container">
+
+      <div className="header">
+        <h1>My Todo List Start</h1>
+        <Button label="All" onClick={() => { }} primary size="medium" />
+        <Button label="Incomplete" onClick={() => { }} primary size="medium" />
+        <Button label="Completed" onClick={() => { }} primary size="medium" />
+      </div>
+
       <NewTodoForm onSubmit={addTodos} />
+      <br />
+      <br />
+
       <TodoList deleteTodo={deleteTodo} todos={todos} toggleTodo={toggleTodo} updateTodo={updateTodo} />
-      <h1>My Todo List Start</h1>
-      <Button label="All" onClick={() => { }} primary size="medium" />
-      <Button label="Incomplete" onClick={() => { }} primary size="medium" />
-      <Button label="Completed" onClick={() => { }} primary size="medium" />
-
-      <form>
-
-        <InputField label="Todo Title" name='title' onChange={() => { }} type='text' value='' />
-        <Button label="Add Todo" onClick={() => {
-          return alert("Configure Add Todo");
-        }} primary size="large" />
-      </form>
-
     </div>
   )
 }
