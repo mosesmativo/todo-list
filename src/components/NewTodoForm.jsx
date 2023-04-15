@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import toast, { Toaster } from "react-hot-toast";
 
 import { useState } from "react";
+import { Button } from "./Buttons/Button";
 
 export function NewTodoForm({ onSubmit }) {
     const [newItem, setNewItem] = useState("");
@@ -37,7 +38,7 @@ export function NewTodoForm({ onSubmit }) {
                     value={newItem}
                 />
             </div>
-            <button className="btn">Add</button>
+            <Button label="Add" primary size="large" />
             <Toaster position="top-right" reverseOrder={false} />
         </form>
     );

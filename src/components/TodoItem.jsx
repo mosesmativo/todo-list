@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
-export function TodoItem({ completed, id, title, toggleTodo, deleteTodo, updateTodo }) {
+export function TodoItem({ complete, id, title, toggleTodo, deleteTodo, updateTodo }) {
   return (
     <li>
       <label>
         <input
-          checked={completed}
+          checked={complete}
           onChange={e => toggleTodo(id, e.target.checked)}
           type="checkbox"
-          value={completed}
+          value={complete}
         />
         {title}
       </label>
@@ -23,7 +23,7 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo, updateT
 }
 
 TodoItem.propTypes = {
-  completed: PropTypes.bool,
+  complete: PropTypes.bool,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toggleTodo: PropTypes.func.isRequired,

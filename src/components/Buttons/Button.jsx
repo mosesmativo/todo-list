@@ -12,7 +12,7 @@ export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
     <button
       className={['todo-list-button', `todo-list-button--${size}`, mode].join(' ')}
       style={backgroundColor && { backgroundColor }}
-      type="button"
+      // type="button"
       {...props}
     >
       {label}
