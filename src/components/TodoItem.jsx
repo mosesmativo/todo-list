@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Button } from './Buttons/Button';
 
 export function TodoItem({ complete, id, title, toggleTodo, deleteTodo, updateTodo }) {
   return (
@@ -12,12 +13,8 @@ export function TodoItem({ complete, id, title, toggleTodo, deleteTodo, updateTo
         />
         {title}
       </label>
-      <button className="btn" onClick={() => updateTodo(id, { title: "Buy bread", complete: true })}>
-        Buy Bread
-      </button>
-      <button className="btn btn-danger" onClick={() => deleteTodo(id)}>
-        Delete
-      </button>
+      <Button label="Edit" onClick={() => updateTodo(id, { title: "Buy bread", complete: true })} />
+      <Button backgroundColor="#C41E3A" label="Delete" onClick={() => deleteTodo(id)} primary />
     </li>
   )
 }

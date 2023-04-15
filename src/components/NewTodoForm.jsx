@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { useState } from "react";
 import { Button } from "./Buttons/Button";
+import { InputField } from "./Inputs/InputField";
 
 export function NewTodoForm({ onSubmit }) {
     const [newItem, setNewItem] = useState("");
@@ -13,6 +14,7 @@ export function NewTodoForm({ onSubmit }) {
         if (newItem === "") return;
 
         onSubmit(newItem);
+
         setNewItem("");
         toast.success('Your Task been added succesfully!.', {
             style: {
@@ -28,13 +30,26 @@ export function NewTodoForm({ onSubmit }) {
     }
 
     return (
-        <form className="new-item-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className="form-row">
-                <label htmlFor="item">New Item</label>
-                <input
+                {/* <label htmlFor="item">New Item</label> */}
+                {/* <input
                     id="item"
                     onChange={(e) => setNewItem(e.target.value)}
                     type="text"
+                    value={newItem}
+                /> */}
+                <InputField
+                    name="item"
+                    onChange={(e) => setNewItem(e.target.value)}
+                    type="text"
+                    value={newItem}
+                />
+                <InputField
+                    label=""
+                    name="item"
+                    onChange={(e) => setNewItem(e.target.value)}
+                    type="textarea"
                     value={newItem}
                 />
             </div>

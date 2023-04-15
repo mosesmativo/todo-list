@@ -1,15 +1,9 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Inputs.css';
 
 export const InputField = ({ label, name, type, onChange, value, options }) => {
-  const [inputValue, setInputValue] = useState(value);
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-    onChange(event.target.value);
-  };
-
+  // OPtions for select Box
   const renderOptions = () => {
     if (!options) return null;
     if (type === 'select') {
@@ -24,20 +18,20 @@ export const InputField = ({ label, name, type, onChange, value, options }) => {
 
   return (
     <div>
-      <label htmlFor={name}>{label}</label>
+      {label ? <label htmlFor={name}>{label}</label> : ""}
       {type === 'text' && (
-        <input className="form-control" id={name} name={name} onChange={handleInputChange} type="text" value={inputValue} />
+        <input className="form-control" id={name} name={name} onChange={onChange} type="text" value={value} />
       )}
       {type === 'checkbox' && (
-        <input className="form-check" id={name} name={name} onChange={handleInputChange} type="checkbox" value={inputValue} />
+        <input className="form-check" id={name} name={name} onChange={onChange} type="checkbox" value={value} />
       )}
       {type === 'select' && (
-        <select className="form-control" id={name} name={name} onChange={handleInputChange} value={inputValue}>
+        <select className="form-control" id={name} name={name} onChange={onChange} value={value}>
           {renderOptions()}
         </select>
       )}
       {type === 'textarea' && (
-        <textarea className="form-control" id={name} name={name} onChange={handleInputChange} rows={5} value={inputValue} />
+        <textarea className="form-control" id={name} name={name} onChange={onChange} rows={5} value={value} />
       )}
     </div>
   );
