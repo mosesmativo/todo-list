@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700;900&display=swap");
 
 // Variables
-$color-red-1: #db4c3f;
+$color-red-1: #800080;
 $color-white: white;
 $color-grey-1: #f1f1f1;
 $color-grey-2: #fafafa;
@@ -640,10 +640,8 @@ select::-ms-expand {
 .content {
   width: 100%;
   max-width: 900px;
-  height: 100vh;
   margin: auto;
-  padding: 70px 50px;
-  overflow: scroll;
+  padding: 2.5rem 3rem;
 
   .content__section {
     margin-top: 45px;
@@ -910,7 +908,7 @@ select::-ms-expand {
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: transparent;
+  background-color: #0000008f;
   z-index: 20;
 
   .modal__formContainer {

@@ -1,7 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import './App.scss'
-import RestTodolist from './components/RestTodolist';
-import AxiosIncompleteTasks from './components/AxiosIncompleteTasks';
+import TodoList from './components/TodoList';
 import TaskAdd from './components/Task/TaskAdd';
 
 
@@ -10,24 +9,19 @@ function App() {
   return (
     <div className="container">
       <div className="header">
-        <h1>My Todo List Start</h1>
+        <h1>Prodapt Todo List App</h1>
       </div>
-      <div className="addtask">
-        <TaskAdd />
+      {/* <TaskModal /> */}
+      <div className='page' data-cy='page'>
+        <div className="content">
+          <TaskAdd />
+          <TodoList />
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+          />
+        </div>
       </div>
-      <div>
-        <RestTodolist />
-      </div>
-      <br></br>
-      <div className="incomplete">
-        <AxiosIncompleteTasks />
-      </div>
-      <br></br>
-
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
     </div>
   )
 }

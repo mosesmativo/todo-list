@@ -4,10 +4,8 @@
 import PopTypes from 'prop-types'
 // import useTaskForm from '../../hooks/useTaskForm';
 
-const TaskFormButtons = ({ setIsTaskFormOpen }) => {
-  const { taskForm } = () => {
+const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
 
-  };
   const { isTaskModalOpen } = () => {
 
   };
@@ -15,13 +13,12 @@ const TaskFormButtons = ({ setIsTaskFormOpen }) => {
     setIsTaskFormOpen()
   };
 
-  const primaryBtnText = isTaskModalOpen && taskForm.id ? 'Save' : 'Add Task';
+  const primaryBtnText = isTaskModalOpen && id ? 'Save' : 'Add Task';
 
   return (
     <div className='taskForm__buttons'>
       <button
         className='button button__primary'
-        disabled={taskForm}
         type='submit'
         value=''>
         {primaryBtnText}
@@ -37,6 +34,7 @@ const TaskFormButtons = ({ setIsTaskFormOpen }) => {
 };
 
 TaskFormButtons.propTypes = {
+  id: PopTypes.number,
   setIsTaskFormOpen: PopTypes.func,
 }
 export default TaskFormButtons;

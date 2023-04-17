@@ -25,7 +25,10 @@ export const GetCompleteTodoItems = async (setTasks) => {
     }
 }
 
-export const createTodoItems = (title, description) => {
+export const createTodoItems = (title, description, dueDate) => {
+    const due = {
+        date: dueDate,
+    }
     const data = {
         commands: JSON.stringify([
             {
@@ -35,6 +38,7 @@ export const createTodoItems = (title, description) => {
                 args: {
                     content: title,
                     description: description,
+                    due: due,
                     project_id: "2311383316",
                 }
             }
@@ -52,7 +56,10 @@ export const createTodoItems = (title, description) => {
 
 }
 
-export const UpdateTodoItem = (id, description, title) => {
+export const UpdateTodoItem = (id, description, title, dueDate) => {
+    const due = {
+        date: dueDate,
+    }
     const data = {
         commands: JSON.stringify([
             {
@@ -61,6 +68,7 @@ export const UpdateTodoItem = (id, description, title) => {
                 args: {
                     id: id,
                     content: title,
+                    due: due,
                     description: description,
                     project_id: "2311383316",
                 }
@@ -68,32 +76,30 @@ export const UpdateTodoItem = (id, description, title) => {
         ])
     };
 
-    axios
-        .post('https://api.todoist.com/sync/v9/sync', data, Config)
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
+    try {
+        axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
+        toast('Good Job! Keep Going', {
+            icon: '👏👏',
         });
+
+    } catch (e) {
+        console.log(e);
+        toast.error('Sorry something went wrong!');
+    }
 }
 
 
 export const DeleteTodoItems = (id) => {
-    const data = {
-        commands: JSON.stringify([
-            {
-                type: "project_delete",
-                uuid: `${crypto.randomUUID()}`,
-                args: {
-                    id: id,
-                }
-            }
-        ])
-    };
+    const data = 'commands=' + encodeURIComponent(JSON.stringify([
+        {
+            type: 'item_delete',
+            uuid: `${crypto.randomUUID()}`,
+            args: { id: id }
+        }
+    ]));
 
     try {
-        axios.delete('https://api.todoist.com/sync/v9/sync', data, Config)
+        axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
         toast.success('Your Task been Deleted succesfully!.');
 
     } catch (e) {

@@ -1,23 +1,20 @@
-import { useContext, useRef } from 'react';
-import TaskForm from '../TaskForm/TaskForm';
-import { TaskModalContext } from '../../contexts/TaskModalContext';
-import { closeModalOnOverlayClick } from '../../utilities/close-modal-on-overlay-click';
+import PropTypes from 'prop-types'
+import TaskForm from '../TaskForm/TaskForm'
 
-const TaskModal = () => {
-  const { setIsTaskModalOpen } = useContext(TaskModalContext);
-  const taskModalOverlayRef = useRef(null);
-
-  closeModalOnOverlayClick(taskModalOverlayRef, () =>
-    setIsTaskModalOpen(false)
-  );
+const TaskModal = ({ children }) => {
 
   return (
-    <div ref={taskModalOverlayRef} className='modal__bgOverlay'>
+    <div className='modal__bgOverlay'>
       <div className='modal__formContainer'>
         <TaskForm inModal='taskForm--inModal' />
+        {children}
       </div>
     </div>
   );
 };
+
+TaskModal.propTypes = {
+  children: PropTypes.node,
+}
 
 export default TaskModal;

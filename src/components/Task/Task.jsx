@@ -1,19 +1,19 @@
+import { useReducer, useEffect } from 'react'
 import { VscTrash, VscEdit } from 'react-icons/vsc'
 import PropTypes from 'prop-types'
-// import useTasks from '../../hooks/useTasks'
-// import useTaskModal from '../../hooks/useTaskModal'
 import TaskCheckbox from './TaskCheckbox'
 import TaskDueDate from './TaskDueDate'
+import { DeleteTodoItems } from '../../lib/Requests'
+import { OpenModals } from '../../lib/OpenModals'
 
 const Task = ({ task }) => {
+  const [isTaskFormOpen, setIsTaskFormOpen] = useReducer(
+    (isTaskFormOpen => !isTaskFormOpen),
+    false);
 
-  const handleTaskModalOpen = () => {
-
-  }
-  const deleteTask = () => {
-
-  }
-
+  useEffect(() => {
+    OpenModals(isTaskFormOpen, task)
+  }, [isTaskFormOpen])
   return (
     <>
       <div className='task' data-cy='task'>
@@ -22,12 +22,12 @@ const Task = ({ task }) => {
           <div
             className='task__name'
             data-cy='task__name'
-            onClick={() => handleTaskModalOpen(task)}>
+            onClick={setIsTaskFormOpen}>
             {task.content}
           </div>
           <div className='task__icons'>
-            <VscTrash data-cy='task__delete' onClick={() => deleteTask(task.id)} />
-            <VscEdit onClick={() => handleTaskModalOpen(task)} />
+            <VscTrash data-cy='task__delete' onClick={() => DeleteTodoItems(task.id)} />
+            <VscEdit onClick={setIsTaskFormOpen} />
           </div>
         </div>
         <div
@@ -35,16 +35,18 @@ const Task = ({ task }) => {
           style={{ display: task.description ? 'grid' : 'none' }}>
           <div
             className='task__description'
-            onClick={() => handleTaskModalOpen(task)}>
+            onClick={setIsTaskFormOpen}>
             {task.description}
           </div>
         </div>
         <div
           className='task__row'
           style={{ display: task.due ? 'grid' : 'none' }}>
-          <TaskDueDate task={task} />
+          <TaskDueDate task={task.due} />
         </div>
       </div>
+
+      {/* {JSON.stringify(task)} */}
       <hr />
     </>
   );
