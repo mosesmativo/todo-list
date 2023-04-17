@@ -1,6 +1,7 @@
 {
   "name": "todo-list",
   "private": true,
+  "proxy": "http://localhost:8080/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -12,10 +13,14 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@doist/todoist-api-typescript": "^2.1.2",
     "@fontsource/poppins": "^4.5.10",
+    "axios": "^1.3.5",
+    "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.8.0",
     "sass": "^1.62.0"
   },
   "devDependencies": {

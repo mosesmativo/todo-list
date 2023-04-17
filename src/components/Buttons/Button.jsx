@@ -15,6 +15,7 @@ export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
       // type="button"
       {...props}
     >
+      {props.children}
       {label}
     </button>
   );
@@ -37,6 +38,9 @@ Button.propTypes = {
    * Button contents
    */
   label: PropTypes.string.isRequired,
+
+  // Icons For the Button
+  children: PropTypes.object,
   /**
    * Optional click handler
    */
@@ -47,5 +51,6 @@ Button.defaultProps = {
   backgroundColor: null,
   primary: false,
   size: 'medium',
+  children: null,
   onClick: undefined,
 };
