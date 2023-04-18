@@ -1,9 +1,9 @@
 import TaskModal from './TaskModal';
 
-const Modals = () => {
+const Modals = (isTaskModalOpen) => {
   return (
     <>
-      <TaskModal />
+      {isTaskModalOpen && <TaskModal />}
     </>
   );
 };

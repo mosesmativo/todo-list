@@ -92,9 +92,13 @@ export const UpdateTodoItem = (id, description, title, dueDate) => {
 export const DeleteTodoItems = (id) => {
     const data = 'commands=' + encodeURIComponent(JSON.stringify([
         {
-            type: 'item_delete',
+            type: 'item_close',
             uuid: `${crypto.randomUUID()}`,
-            args: { id: id }
+            args: {
+                id: id,
+                is_deleted: true,
+
+            }
         }
     ]));
 
@@ -107,4 +111,51 @@ export const DeleteTodoItems = (id) => {
         toast.error('Sorry something went wrong!');
     }
 
+}
+
+export const CloseTodo = (id) => {
+    const data = 'commands=' + encodeURIComponent(JSON.stringify([
+        {
+            type: 'item_complete',
+            uuid: `${crypto.randomUUID()}`,
+            args: { id: id }
+        }
+    ]));
+
+    try {
+        axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
+        toast.success('Your Task been Closed succesfully!.');
+
+    } catch (e) {
+        console.log(e);
+        toast.error('Sorry something went wrong!');
+    }
+}
+
+export const UnDoCloseTodo = (id) => {
+    const data = 'commands=' + encodeURIComponent(JSON.stringify([
+        {
+            type: 'item_uncomplete',
+            uuid: `${crypto.randomUUID()}`,
+            args: { id: id }
+        }
+    ]));
+
+    try {
+        axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
+        toast('Task succesfully Undone!',
+            {
+                icon: '👏',
+                style: {
+                    borderRadius: '10px',
+                    background: 'orange',
+                    color: '#fff',
+                },
+            }
+        )
+
+    } catch (e) {
+        console.log(e);
+        toast.error('Sorry something went wrong!');
+    }
 }

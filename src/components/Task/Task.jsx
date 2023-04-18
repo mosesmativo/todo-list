@@ -1,9 +1,8 @@
 import { useReducer, useEffect } from 'react'
 import { VscTrash, VscEdit } from 'react-icons/vsc'
 import PropTypes from 'prop-types'
-import TaskCheckbox from './TaskCheckbox'
 import TaskDueDate from './TaskDueDate'
-import { DeleteTodoItems } from '../../lib/Requests'
+import { DeleteTodoItems, CloseTodo } from '../../lib/Requests'
 import { OpenModals } from '../../lib/OpenModals'
 
 const Task = ({ task }) => {
@@ -14,11 +13,12 @@ const Task = ({ task }) => {
   useEffect(() => {
     OpenModals(isTaskFormOpen, task)
   }, [isTaskFormOpen])
+
   return (
     <>
       <div className='task' data-cy='task'>
         <div className='task__row'>
-          <TaskCheckbox task={task.checked} />
+          <input checked={task.checked == true || task.completed_at ? true : false} name="complete" onChange={() => CloseTodo(task.id)} type='checkbox' value={task.checked} />
           <div
             className='task__name'
             data-cy='task__name'

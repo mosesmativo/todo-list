@@ -29,7 +29,7 @@ export const InputField = ({ id, label, name, type, onChange, value, options, ..
       )}
 
       {type === 'checkbox' && (
-        <input className="form-check" id={id} name={name} onChange={onChange} type="checkbox" value={value} />
+        <label className='checkbox'><input className="form-check" data-cy='checkbox' id={id} name={name} onChange={onChange} type="checkbox" value={value} /></label>
       )}
 
       {type === 'select' && (

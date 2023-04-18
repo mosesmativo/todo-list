@@ -910,6 +910,8 @@ select::-ms-expand {
   width: 100vw;
   background-color: #0000008f;
   z-index: 20;
+  top: 0;
+  right: 0;
 
   .modal__formContainer {
     width: 100%;
@@ -970,6 +972,7 @@ select::-ms-expand {
 }
 
 /* Style the checkmark/indicator */
+
 .checkbox .checkbox__checkmark:after {
   left: 6px;
   top: 4px;
@@ -980,4 +983,22 @@ select::-ms-expand {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.active .checkbox__checkmark:after {
+  left: 6px;
+  top: 4px;
+  width: 5px;
+  height: 7px;
+  border: solid $color-grey-6;
+  border-width: 0 1px 1px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  display: block !important;
+}
+.task .active .task__name {
+  grid-area: center;
+  text-decoration: line-through;
+  opacity: 0.4;
 }

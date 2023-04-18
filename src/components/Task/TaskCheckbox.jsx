@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types'
 
-const TaskCheckbox = ({ task }) => {
-  const { closeTask } = () => {
-
-  }
-
+const TaskCheckbox = ({ task, completed }) => {
   return (
-    <label className='checkbox'>
+    <label className={`checkbox ${task === true || completed ? "active" : "not"}`}>
       <input
-        checked
         data-cy='checkbox'
-        onChange={() => closeTask(task)}
         type='checkbox'></input>
       <span className='checkbox__checkmark'></span>
     </label>
@@ -19,6 +13,7 @@ const TaskCheckbox = ({ task }) => {
 
 TaskCheckbox.propTypes = {
   task: PropTypes.bool,
+  completed: PropTypes.string
 }
 
 export default TaskCheckbox;

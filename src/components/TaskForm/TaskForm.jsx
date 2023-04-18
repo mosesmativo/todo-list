@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TaskFormButtons from './TaskFormButtons';
 import { InputField } from '../Inputs/InputField';
 import { createTodoItems } from '../../lib/Requests';
-const TaskForm = ({ setIsTaskFormOpen, inModal }) => {
+const TaskForm = ({ setIsTaskFormOpen, inModal, task }) => {
 
   const [inputTitle, setInputTitle] = useState("")
   const [inputDesc, setInputDesc] = useState("")
@@ -24,15 +24,17 @@ const TaskForm = ({ setIsTaskFormOpen, inModal }) => {
   const handleTaskFormSubmit = (e) => {
     e.preventDefault();
     createTodoItems(inputTitle, inputDesc, inputDue)
-    console.log(inputDue)
+
+    setIsTaskFormOpen(false)
+
     setInputTitle("")
     setInputDesc("")
+    setInputDue("")
   };
 
   return (
     <form
-      className={`taskForm ${inModal}`}
-      data-cy='taskForm'
+      className="taskForm taskForm--inModal" data-cy='taskForm'
       onSubmit={handleTaskFormSubmit}>
 
       <div className='taskForm__inputs'>
@@ -88,6 +90,7 @@ const TaskForm = ({ setIsTaskFormOpen, inModal }) => {
 
 TaskForm.propTypes = {
   inModal: PropTypes.string,
-  setIsTaskFormOpen: PropTypes.func
+  setIsTaskFormOpen: PropTypes.func,
+  task: PropTypes.object,
 }
 export default TaskForm;

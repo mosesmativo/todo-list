@@ -6,14 +6,7 @@ import PopTypes from 'prop-types'
 
 const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
 
-  const { isTaskModalOpen } = () => {
-
-  };
-  const handleTaskFormCancel = () => {
-    setIsTaskFormOpen()
-  };
-
-  const primaryBtnText = isTaskModalOpen && id ? 'Save' : 'Add Task';
+  const primaryBtnText = setIsTaskFormOpen && id ? 'Save' : 'Add Task';
 
   return (
     <div className='taskForm__buttons'>
@@ -25,7 +18,7 @@ const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
       </button>
       <button
         className='button button__secondary'
-        onClick={handleTaskFormCancel}
+        onClick={() => { }}
         type='button'>
         Cancel
       </button>
@@ -35,6 +28,6 @@ const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
 
 TaskFormButtons.propTypes = {
   id: PopTypes.number,
-  setIsTaskFormOpen: PopTypes.func,
+  setIsTaskFormOpen: PopTypes.bool,
 }
 export default TaskFormButtons;
