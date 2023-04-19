@@ -1,28 +1,25 @@
-// import { useContext } from 'react';
-// import { TaskFormContext } from '../../contexts/TaskFormContext';
-// import { TaskModalContext } from '../../contexts/TaskModalContext';
 import PopTypes from 'prop-types'
-// import useTaskForm from '../../hooks/useTaskForm';
-
+import { Button } from '../Buttons/Button'
 const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
 
-  const primaryBtnText = setIsTaskFormOpen && id ? 'Save' : 'Add Task';
-
   return (
-    <div className='taskForm__buttons'>
-      <button
-        className='button button__primary'
-        type='submit'
-        value=''>
-        {primaryBtnText}
-      </button>
-      <button
-        className='button button__secondary'
-        onClick={() => setIsTaskFormOpen(false)}
-        type='button'>
-        Cancel
-      </button>
-    </div>
+    <>
+
+      <div className='taskForm__buttons'>
+        <Button
+          label={setIsTaskFormOpen && id ? 'Save' : 'Add Task'}
+          primary
+          type='submit'
+          value=''
+        />
+        <Button
+          label="Cancel"
+          onClick={() => setIsTaskFormOpen(false)}
+          type='submit'
+          value=''
+        />
+      </div>
+    </>
   );
 };
 

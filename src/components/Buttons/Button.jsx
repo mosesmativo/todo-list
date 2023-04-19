@@ -1,18 +1,17 @@
 import PropTypes from 'prop-types';
-import './button.css';
+import './button.scss';
 
 /**
  * Primary UI component for user interaction
  */
 export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
 
-  const mode = primary ? 'todo-list-button--primary' : 'todo-list-button--secondary';
+  const mode = primary ? 'button__primary' : 'button__secondary';
 
   return (
     <button
-      className={['todo-list-button', `todo-list-button--${size}`, mode].join(' ')}
+      className={['button', `button_size_${size}`, mode].join(' ')}
       style={backgroundColor && { backgroundColor }}
-      // type="button"
       {...props}
     >
       {props.children}

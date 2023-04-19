@@ -113,35 +113,6 @@ select::-ms-expand {
   }
 }
 
-// Reusable Components
-.button {
-  display: inline-block;
-  border-radius: $border-radius-medium;
-  padding: 7px 10px;
-  width: fit-content;
-}
-
-.button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.button__primary {
-  margin-right: 12px;
-  background-color: $color-red-1;
-  border: 1px solid $color-red-1;
-  color: $color-white;
-}
-
-.button__secondary {
-  background-color: $color-white;
-  border: 1px solid $color-grey-3;
-}
-
-.button__secondary:hover {
-  background-color: $color-grey-1;
-}
-
 // Header
 .header {
   display: grid;
