@@ -18,7 +18,7 @@ const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
       </button>
       <button
         className='button button__secondary'
-        onClick={() => { }}
+        onClick={() => setIsTaskFormOpen(false)}
         type='button'>
         Cancel
       </button>
@@ -27,7 +27,7 @@ const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
 };
 
 TaskFormButtons.propTypes = {
-  id: PopTypes.number,
-  setIsTaskFormOpen: PopTypes.bool,
+  id: PopTypes.string,
+  setIsTaskFormOpen: PopTypes.func,
 }
 export default TaskFormButtons;

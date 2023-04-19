@@ -8,17 +8,19 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
   const [inputTitle, setInputTitle] = useState("")
   const [inputDesc, setInputDesc] = useState("")
   const [inputDue, setInputDue] = useState("")
+  const [inputId, setInputId] = useState("")
 
   // If we are editing an existing task, populate the fields with its data
   if (onEdit) {
-    const { name, description, } = taskToEdit;
+    const { id, content, description, due } = taskToEdit;
+    const callendar = due.date
     if (inputTitle === "" && inputDesc === "" && inputDue === "") {
-      setInputTitle(name);
+      setInputTitle(content);
       setInputDesc(description);
-      setInputDue(inputDue)
+      setInputDue(callendar)
+      setInputId(id)
     }
   }
-
   const handleChange = (e) => {
     const { name, value } = e.target
     if (name === 'name') {
@@ -33,10 +35,11 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
   }
 
   const handleTaskFormSubmit = (e) => {
+
     e.preventDefault();
 
     if (onEdit) {
-      onEdit(inputTitle, inputDesc, inputDue)
+      onEdit(inputId, inputDesc, inputTitle, inputDue)
     } else {
       onCreate(inputTitle, inputDesc, inputDue)
     }
@@ -99,10 +102,9 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
                   type='date'
                   value={inputDue}
                 />
-                {/* <TaskFormDueDate  onChange={handleChange} value={inputDue}/> */}
               </div>
             </div>
-            <TaskFormButtons id={taskToEdit} setIsTaskFormOpen={isOpen} />
+            <TaskFormButtons id={inputId} setIsTaskFormOpen={isOpen} />
           </form>
         </div>
       </div>)}
@@ -112,7 +114,7 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
 };
 
 TaskModal.propTypes = {
-  isOpen: PropTypes.bool,
+  isOpen: PropTypes.func,
   onCreate: PropTypes.func,
   onEdit: PropTypes.func,
   task: PropTypes.object,

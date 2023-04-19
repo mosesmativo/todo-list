@@ -1,24 +1,20 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer } from 'react'
 import { VscTrash, VscEdit } from 'react-icons/vsc'
 import PropTypes from 'prop-types'
 import TaskDueDate from './TaskDueDate'
-import { DeleteTodoItems, CloseTodo } from '../../lib/Requests'
-import { OpenModals } from '../../lib/OpenModals'
+import TaskModal from '../Modals/TaskModal'
 
-const Task = ({ task }) => {
+const Task = ({ task, onDelete, onClose, onEdit }) => {
   const [isTaskFormOpen, setIsTaskFormOpen] = useReducer(
     (isTaskFormOpen => !isTaskFormOpen),
     false);
 
-  useEffect(() => {
-    OpenModals(isTaskFormOpen, task)
-  }, [isTaskFormOpen])
-
+  console.log(task);
   return (
     <>
-      <div className='task' data-cy='task'>
+      <div className={`task ${task.checked == true || task.completed_at ? "active" : ""}`} data-cy='task'>
         <div className='task__row'>
-          <input checked={task.checked == true || task.completed_at ? true : false} name="complete" onChange={() => CloseTodo(task.id)} type='checkbox' value={task.checked} />
+          <input checked={task.checked == true || task.completed_at ? true : false} name="complete" onChange={() => onClose(task.id)} type='checkbox' value={task.checked} />
           <div
             className='task__name'
             data-cy='task__name'
@@ -26,8 +22,9 @@ const Task = ({ task }) => {
             {task.content}
           </div>
           <div className='task__icons'>
-            <VscTrash data-cy='task__delete' onClick={() => DeleteTodoItems(task.id)} />
-            <VscEdit onClick={setIsTaskFormOpen} />
+            <VscTrash data-cy='task__delete' onClick={() => onDelete(task.id)} />
+            {/* <pre>{task.added_at}</pre> */}
+            {task.completed_at ? null : <VscEdit onClick={setIsTaskFormOpen} />}
           </div>
         </div>
         <div
@@ -42,12 +39,12 @@ const Task = ({ task }) => {
         <div
           className='task__row'
           style={{ display: task.due ? 'grid' : 'none' }}>
-          <TaskDueDate task={task.due} />
+          <TaskDueDate taskAded={task.added_at} taskDate={task.due} />
         </div>
       </div>
 
-      {/* {JSON.stringify(task)} */}
       <hr />
+      {isTaskFormOpen === true ? <TaskModal isOpen={setIsTaskFormOpen} onEdit={onEdit} taskToEdit={task} /> : null}
     </>
   );
 
@@ -55,6 +52,10 @@ const Task = ({ task }) => {
 
 Task.propTypes = {
   task: PropTypes.object,
+  title: PropTypes.string,
+  onDelete: PropTypes.func,
+  onClose: PropTypes.func,
+  onEdit: PropTypes.func,
 }
 
 export default Task;

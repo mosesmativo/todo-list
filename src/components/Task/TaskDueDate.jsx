@@ -2,25 +2,24 @@ import { BsCalendar4Event } from 'react-icons/bs';
 import PropTypes from 'prop-types'
 
 
-const TaskDueDate = ({ task }) => {
-  const handleTaskModalOpen = () => {
-
-  }
+const TaskDueDate = ({ taskAded }) => {
 
   return (
-    <div
-      className='task__dueDateContainer'
-      onClick={() => handleTaskModalOpen(task)}>
-      <span className='task__dueDateIcon'>
-        <BsCalendar4Event />
-      </span>
-      <span className='task__dueDate'>date</span>
-    </div>
+    <>
+      <div
+        className='task__dueDateContainer'
+        onClick={() => { }}>
+        <span className='task__dueDateIcon'>
+          <BsCalendar4Event />
+        </span>
+        <span className='task__dueDate'>{taskAded ? taskAded : "Completed"}</span>
+      </div>
+    </>
   );
 };
 
 TaskDueDate.propTypes = {
-  task: PropTypes.object,
+  taskAded: PropTypes.string,
 }
 
 export default TaskDueDate;

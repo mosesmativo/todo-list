@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { GetAllItems, GetCompleteTodoItems } from '../lib/Requests';
+import { GetAllItems, GetCompleteTodoItems, DeleteTodoItems, CloseTodo, UpdateTodoItem } from '../lib/Requests';
 import Task from './Task/Task'
 
 
@@ -20,14 +20,12 @@ const TodoList = () => {
 
   return (
     <>
-      <h1>Tasks To Complete </h1>
       {notcompleted && notcompleted.length > 0 && notcompleted.map(item => (
-        <Task key={item.id} task={item} />
+        <Task key={item.id} onClose={CloseTodo} onDelete={DeleteTodoItems} onEdit={UpdateTodoItem} task={item} title="Tasks To Complete" />
       ))}
 
-      <h1>Completed Taks</h1>
       {completed && completed.length > 0 && completed.map(item => (
-        <Task key={item.id} task={item} />
+        <Task key={item.id} onClose={CloseTodo} onDelete={DeleteTodoItems} onEdit={UpdateTodoItem} task={item} title="Completed Taks" />
       ))}
     </>
   );
@@ -35,6 +33,7 @@ const TodoList = () => {
 TodoList.propTypes = {
   inputDesc: PropTypes.string,
   inputTitle: PropTypes.string,
+  UpdateTodoItem: PropTypes.string,
 }
 
 export default TodoList;

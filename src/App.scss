@@ -997,8 +997,8 @@ select::-ms-expand {
   transform: rotate(45deg);
   display: block !important;
 }
-.task .active .task__name {
+.task.active .task__name {
   grid-area: center;
-  text-decoration: line-through;
+  text-decoration: line-through !important;
   opacity: 0.4;
 }
