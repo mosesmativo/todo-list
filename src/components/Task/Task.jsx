@@ -9,7 +9,6 @@ const Task = ({ task, onDelete, onClose, onEdit }) => {
     (isTaskFormOpen => !isTaskFormOpen),
     false);
 
-  console.log(task);
   return (
     <>
       <div className={`task ${task.checked == true || task.completed_at ? "active" : ""}`} data-cy='task'>
@@ -18,7 +17,7 @@ const Task = ({ task, onDelete, onClose, onEdit }) => {
           <div
             className='task__name'
             data-cy='task__name'
-            onClick={setIsTaskFormOpen}>
+            onClick={() => setIsTaskFormOpen()}>
             {task.content}
           </div>
           <div className='task__icons'>
@@ -32,7 +31,7 @@ const Task = ({ task, onDelete, onClose, onEdit }) => {
           style={{ display: task.description ? 'grid' : 'none' }}>
           <div
             className='task__description'
-            onClick={setIsTaskFormOpen}>
+            onClick={() => setIsTaskFormOpen()}>
             {task.description}
           </div>
         </div>
@@ -44,7 +43,7 @@ const Task = ({ task, onDelete, onClose, onEdit }) => {
       </div>
 
       <hr />
-      {isTaskFormOpen === true ? <TaskModal isOpen={setIsTaskFormOpen} onEdit={onEdit} taskToEdit={task} /> : null}
+      {isTaskFormOpen === true ? <TaskModal isOpen={() => setIsTaskFormOpen()} onEdit={onEdit} taskToEdit={task} /> : null}
     </>
   );
 

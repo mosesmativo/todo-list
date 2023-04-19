@@ -60,7 +60,6 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
             onSubmit={handleTaskFormSubmit}>
 
             <div className='taskForm__inputs'>
-              {/* <TaskFormName /> */}
               <InputField
                 autoFocus
                 className='taskForm__input taskForm__name'
