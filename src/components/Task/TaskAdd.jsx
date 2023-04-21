@@ -1,8 +1,8 @@
-import { useReducer, useState, useEffect } from 'react';
-import { getIncompleteItems, getCompleteItems, createTodoItems } from '../../hooks/Requests';
+import { useReducer } from 'react';
 import { VscAdd } from 'react-icons/vsc';
 import TaskModal from '../Modals/TaskModal'
 import TodoList from '../TodoList';
+import { useAdd } from '../../hooks/useAdd';
 
 
 const TaskAdd = () => {
@@ -10,21 +10,10 @@ const TaskAdd = () => {
     (isTaskFormOpen => !isTaskFormOpen),
     false);
 
-  const [notCompleteTasks, setNotCompleteTasks] = useState([])
-
-  const [completeTasks, setcompleteTasks] = useState([]);
-
-  useEffect(() => {
-
-    getIncompleteItems(setNotCompleteTasks)
-    getCompleteItems(setcompleteTasks)
-
-  }, []);
-
   return (
     <>
       {isTaskFormOpen ? (
-        <TaskModal isOpen={() => setIsTaskFormOpen()} onCreate={createTodoItems} />
+        <TaskModal isOpen={() => setIsTaskFormOpen()} onCreate={useAdd} />
       ) : (
         <div
           className='addTask__line'
@@ -34,7 +23,7 @@ const TaskAdd = () => {
           <div className='addTask__text'>Add Task</div>
         </div>
       )}
-      <TodoList completed={completeTasks} uncompleted={notCompleteTasks} />
+      <TodoList />
     </>
   );
 };
