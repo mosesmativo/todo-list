@@ -43,7 +43,7 @@ const Task = ({ task }) => {
         <div
           className='task__row'
           style={{ display: task.due ? 'grid' : 'none' }}>
-          <TaskDueDate taskAded={task.due} taskDate={task.due} />
+          <TaskDueDate taskAded={task.due} />
         </div>
       </div>
 
