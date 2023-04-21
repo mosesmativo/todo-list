@@ -13,6 +13,7 @@ export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
       className={['button', `button_size_${size}`, mode].join(' ')}
       style={backgroundColor && { backgroundColor }}
       {...props}
+      data-testid="buttoncomponent"
     >
       {props.children}
       {label}
@@ -49,6 +50,7 @@ Button.propTypes = {
 Button.defaultProps = {
   backgroundColor: null,
   primary: false,
+  label: '',
   size: 'medium',
   children: null,
   onClick: undefined,

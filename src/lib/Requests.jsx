@@ -2,10 +2,13 @@ import axios from 'axios';
 import toast from "react-hot-toast";
 import { Config } from '../util/Configs';
 
+
 export const GetAllItems = async (setTasks) => {
     try {
-        const response = await axios.get('https://api.todoist.com/sync/v9/projects/get_data?project_id=2311383316', Config);
+        const response = await axios.get('https://api.todoist.com/sync/v9/projects/get_data?project_id=2311672712', Config);
+
         setTasks(response.data);
+
 
     } catch (e) {
         console.log(e);
@@ -14,7 +17,7 @@ export const GetAllItems = async (setTasks) => {
 
 export const GetCompleteTodoItems = async (setTasks) => {
     try {
-        const response = await axios.get('https://api.todoist.com/sync/v9/completed/get_all', {
+        const response = await axios.get('https://api.todoist.com/sync/v9/archive/items?project_id=2311672712', {
             headers: {
                 'Authorization': `Bearer 55c63d4af64afc2b071408c43b92bfe0ffaad810`
             }
@@ -39,7 +42,7 @@ export const createTodoItems = (title, description, dueDate) => {
                     content: title,
                     description: description,
                     due: due,
-                    project_id: "2311383316",
+                    project_id: "2311672712",
                 }
             }
         ])
@@ -70,7 +73,7 @@ export const UpdateTodoItem = (id, description, title, dueDate) => {
                     content: title,
                     due: due,
                     description: description,
-                    project_id: "2311383316",
+                    project_id: "2311672712",
                 }
             }
         ])
@@ -92,12 +95,10 @@ export const UpdateTodoItem = (id, description, title, dueDate) => {
 export const DeleteTodoItems = (id) => {
     const data = 'commands=' + encodeURIComponent(JSON.stringify([
         {
-            type: 'item_close',
+            type: 'item_delete',
             uuid: `${crypto.randomUUID()}`,
             args: {
                 id: id,
-                is_deleted: true,
-
             }
         }
     ]));
@@ -116,7 +117,7 @@ export const DeleteTodoItems = (id) => {
 export const CloseTodo = (id) => {
     const data = 'commands=' + encodeURIComponent(JSON.stringify([
         {
-            type: 'item_complete',
+            type: 'item_close',
             uuid: `${crypto.randomUUID()}`,
             args: { id: id }
         }
@@ -135,20 +136,22 @@ export const CloseTodo = (id) => {
 export const UnDoCloseTodo = (id) => {
     const data = 'commands=' + encodeURIComponent(JSON.stringify([
         {
-            type: 'item_uncomplete',
+            type: "item_uncomplete",
             uuid: `${crypto.randomUUID()}`,
-            args: { id: id }
+            args: {
+                id: id,
+            },
         }
     ]));
 
     try {
-        axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
+        axios.post('https://todoist.com/API/v9.0/sync', data, Config, { withCredentials: true })
         toast('Task succesfully Undone!',
             {
                 icon: '👏',
                 style: {
                     borderRadius: '10px',
-                    background: 'orange',
+                    background: 'black',
                     color: '#fff',
                 },
             }
