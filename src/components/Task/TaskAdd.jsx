@@ -1,5 +1,5 @@
 import { useReducer, useState, useEffect } from 'react';
-import { GetAllItems, GetCompleteTodoItems, createTodoItems } from '../../lib/Requests';
+import { getIncompleteItems, getCompleteItems, createTodoItems } from '../../hooks/Requests';
 import { VscAdd } from 'react-icons/vsc';
 import TaskModal from '../Modals/TaskModal'
 import TodoList from '../TodoList';
@@ -16,10 +16,10 @@ const TaskAdd = () => {
 
   useEffect(() => {
 
-    GetAllItems(setNotCompleteTasks)
-    GetCompleteTodoItems(setcompleteTasks)
+    getIncompleteItems(setNotCompleteTasks)
+    getCompleteItems(setcompleteTasks)
 
-  }, [notCompleteTasks, isTaskFormOpen]);
+  }, []);
 
   return (
     <>

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 const TaskDueDate = ({ taskAded, taskDate }) => {
 
-  const dateObject = new Date(taskAded.date)
   return (
     <>
       {/* <pre>
@@ -16,7 +15,7 @@ const TaskDueDate = ({ taskAded, taskDate }) => {
         <span className='task__dueDateIcon'>
           <BsCalendar4Event />
         </span>
-        <span className='task__dueDate'>{taskAded.date}</span>
+        <span className='task__dueDate'>{"complete"}</span>
       </div>
     </>
   );

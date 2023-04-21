@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { Config } from '../util/Configs';
 
 
-export const GetAllItems = async (setTasks) => {
+export const getIncompleteItems = async (setTasks) => {
     try {
         const response = await axios.get('https://api.todoist.com/sync/v9/projects/get_data?project_id=2311672712', Config);
 
@@ -15,16 +15,12 @@ export const GetAllItems = async (setTasks) => {
     }
 }
 
-export const GetCompleteTodoItems = async (setTasks) => {
+export const getCompleteItems = async (setTasks) => {
     try {
-        const response = await axios.get('https://api.todoist.com/sync/v9/archive/items?project_id=2311672712', {
-            headers: {
-                'Authorization': `Bearer 55c63d4af64afc2b071408c43b92bfe0ffaad810`
-            }
-        });
-        setTasks(response.data);
+        const response = await axios.get('https://api.todoist.com/sync/v9/archive/items?project_id=2311672712', Config)
+        setTasks(response.data)
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 }
 

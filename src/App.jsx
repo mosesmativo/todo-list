@@ -1,6 +1,7 @@
 import { Toaster } from 'react-hot-toast';
 import './App.scss'
 import TaskAdd from './components/Task/TaskAdd';
+import Filter from './components/Filter';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
       <div className='page' data-cy='page'>
         <div className="content">
+          <Filter />
           <TaskAdd />
           <Toaster
             position="top-center"

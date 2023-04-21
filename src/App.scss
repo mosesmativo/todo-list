@@ -21,8 +21,8 @@ $font-size-large: 20px;
 $font-size-extra-large: 26px;
 
 $border-radius-small: 3px;
-$border-radius-medium: 5px;
-$border-radius-large: 10px;
+$border-radius-medium: 10px;
+$border-radius-large: 15px;
 
 //General
 html {
@@ -1000,6 +1000,11 @@ select::-ms-expand {
 .button__secondary:hover {
   background-color: $color-grey-1;
 }
+.button__primary:hover {
+  background-color: $color-red-1;
+  border: 1px solid $color-grey-3;
+  color: $color-white;
+}
 .button_size_small {
   font-size: 12px;
   padding: 10px 16px;
@@ -1014,4 +1019,16 @@ select::-ms-expand {
 }
 .addTask__line {
   margin: 0 0 2rem 0;
+}
+
+// Filter Buttons
+.filter-holder {
+  margin: 0 0 1.5rem;
+
+  .button {
+    margin-right: 10px;
+    svg {
+      margin-right: 10px;
+    }
+  }
 }
