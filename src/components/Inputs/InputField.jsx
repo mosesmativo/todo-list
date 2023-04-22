@@ -18,7 +18,7 @@ export const InputField = ({ id, label, name, type, onChange, value, options, ..
   };
 
   return (
-    <div id="inputcomponent">
+    <div>
       {label ? <label htmlFor={id}>{label}</label> : ""}
 
       {/* Input field type Text */}
@@ -30,7 +30,7 @@ export const InputField = ({ id, label, name, type, onChange, value, options, ..
       )}
 
       {type === 'checkbox' && (
-        <label className='checkbox'><input className="form-check" data-cy='checkbox' id={id} name={name} onChange={onChange} type="checkbox" value={value} data-testid="inputcomponent" /></label>
+        <label className='checkbox'><input className="checkbox__checkmark" data-cy='checkbox' id={id} name={name} onChange={onChange} type="checkbox" value={value} data-testid="inputcomponent" /></label>
       )}
 
       {type === 'select' && (

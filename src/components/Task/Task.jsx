@@ -4,22 +4,32 @@ import { VscTrash, VscEdit } from 'react-icons/vsc'
 import PropTypes from 'prop-types'
 import TaskDueDate from './TaskDueDate'
 import TaskModal from '../Modals/TaskModal'
-import { useDelete } from '../../hooks/useDelete'
-import { useUndo } from '../../hooks/useUndo'
 import { useUpdate } from '../../hooks/useUpdate'
-import { useClose } from '../../hooks/useClose'
 
-const Task = ({ task }) => {
+
+
+const Task = ({ task, onDelete, onCheck }) => {
+
   // We are dispatching setTaskFormOpen function to toggle the modal
   const [isTaskFormOpen, setIsTaskFormOpen] = useReducer(
     (isTaskFormOpen => !isTaskFormOpen),
-    false);
+    null)
 
   return (
     <>
       <div className={`task ${task.checked == true || task.completed_at ? "active" : ""}`} data-cy='task'>
         <div className='task__row'>
-          <input checked={task.checked == true || task.completed_at ? true : false} name="complete" onChange={() => { task.checked == true ? useUndo(task.id) : useClose(task.id) }} type='checkbox' value={task.checked} />
+
+          <label className='checkbox'>
+            <input
+              checked={task.checked == true || task.completed_at ? true : false}
+              data-cy='checkbox'
+              onChange={() => onCheck(task)}
+              type='checkbox'
+              value={task.checked}
+            ></input>
+            <span className='checkbox__checkmark'></span>
+          </label>
 
           <div
             className='task__name'
@@ -28,7 +38,7 @@ const Task = ({ task }) => {
             {task.content}
           </div>
           <div className='task__icons'>
-            <VscTrash data-cy='task__delete' onClick={() => useDelete(task.id)} />
+            <VscTrash data-cy='task__delete' onClick={() => onDelete(task.id)} />
             {task.completed_at ? null : <VscEdit onClick={() => setIsTaskFormOpen()} />}
           </div>
         </div>
@@ -49,11 +59,11 @@ const Task = ({ task }) => {
       </div>
 
       <hr />
-      {isTaskFormOpen === true ? <TaskModal isOpen={() => setIsTaskFormOpen()} onEdit={useUpdate} taskToEdit={task} /> : null}
+      {isTaskFormOpen === true ? <TaskModal isOpen={setIsTaskFormOpen} onEdit={useUpdate} taskToEdit={task} /> : null}
     </>
-  );
+  )
 
-};
+}
 
 Task.propTypes = {
   task: PropTypes.object,
@@ -61,6 +71,7 @@ Task.propTypes = {
   onDelete: PropTypes.func,
   onClose: PropTypes.func,
   onEdit: PropTypes.func,
+  onCheck: PropTypes.func,
 }
 
 export default Task;

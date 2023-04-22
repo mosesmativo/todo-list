@@ -62,9 +62,3 @@ $border-radius-large: 15px;
   -ms-user-select: none;
   user-select: none;
 }
-
-@mixin mq($from) {
-  @media (max-width: $from) {
-    @content;
-  }
-}

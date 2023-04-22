@@ -48,7 +48,9 @@
 .task:hover .task__icons {
   display: grid;
 }
-
+.task:hover {
+  color: #812b80;
+}
 // TaskAdd
 .addTask__line {
   @include va;

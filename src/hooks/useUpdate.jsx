@@ -6,6 +6,7 @@ export const useUpdate = (id, description, title, dueDate) => {
     const due = {
         date: dueDate,
     }
+
     const data = {
         commands: JSON.stringify([
             {
@@ -20,7 +21,8 @@ export const useUpdate = (id, description, title, dueDate) => {
                 }
             }
         ])
-    };
+    }
+
 
     try {
         axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
@@ -34,4 +36,7 @@ export const useUpdate = (id, description, title, dueDate) => {
         console.log(e);
         toast.error('Sorry something went wrong!');
     }
+
+
+
 }

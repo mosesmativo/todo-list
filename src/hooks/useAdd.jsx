@@ -20,14 +20,16 @@ export const useAdd = (title, description, dueDate) => {
                 }
             }
         ])
-    };
+    }
 
     try {
         axios.post('https://api.todoist.com/sync/v9/sync', data, Config)
-        toast.success('Your Task been added succesfully!.');
+        toast.success('Your Task been added succesfully!.')
 
     } catch (e) {
-        console.log(e);
-        toast.error('Sorry something went wrong!');
+        console.log(e)
+        toast.error('Sorry something went wrong!')
     }
+
+
 }

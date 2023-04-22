@@ -1,12 +1,13 @@
 import PopTypes from 'prop-types'
 import { Button } from '../Buttons/Button'
-const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
+
+const TaskFormButtons = ({ setIsTaskFormOpen, id, disabled }) => {
 
   return (
     <>
-
       <div className='taskForm__buttons'>
         <Button
+          disabled={disabled}
           label={setIsTaskFormOpen && id ? 'Save' : 'Add Task'}
           primary
           type='submit'
@@ -15,16 +16,17 @@ const TaskFormButtons = ({ setIsTaskFormOpen, id }) => {
         <Button
           label="Cancel"
           onClick={() => setIsTaskFormOpen(false)}
-          type='submit'
+          type='button'
           value=''
         />
       </div>
     </>
-  );
-};
+  )
+}
 
 TaskFormButtons.propTypes = {
   id: PopTypes.string,
+  disabled: PopTypes.bool,
   setIsTaskFormOpen: PopTypes.func,
 }
 export default TaskFormButtons;

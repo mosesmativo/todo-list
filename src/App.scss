@@ -23,6 +23,19 @@ body {
   overscroll-behavior: none;
   margin: 0;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $color-grey-5;
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(20 25 33);
+}
 
 h1 {
   font-size: $font-size-large;

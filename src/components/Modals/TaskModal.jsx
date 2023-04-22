@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './Modal.scss'
 import PropTypes from 'prop-types'
-import TaskFormButtons from './TaskFormButtons';
-import { InputField } from '../Inputs/InputField';
+import TaskFormButtons from './TaskFormButtons'
+import { InputField } from '../Inputs/InputField'
 
 const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
 
@@ -35,22 +35,24 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
     }
   }
 
-  const handleTaskFormSubmit = (e) => {
-
-    e.preventDefault();
+  const handleTaskFormSubmit = () => {
 
     if (onEdit) {
       onEdit(inputId, inputDesc, inputTitle, inputDue)
     } else {
       onCreate(inputTitle, inputDesc, inputDue)
     }
-
-    isOpen(false)
+    if (!inputTitle || !inputDesc || !inputDue) {
+      isOpen(true)
+    } else {
+      isOpen(false)
+    }
 
     setInputTitle("")
     setInputDesc("")
     setInputDue("")
-  };
+  }
+
 
   return (
     <>
@@ -105,7 +107,7 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
                   />
                 </div>
               </div>
-              <TaskFormButtons id={inputId} setIsTaskFormOpen={isOpen} />
+              <TaskFormButtons disabled={!inputDue ? true : false} id={inputId} setIsTaskFormOpen={isOpen} />
             </form>
           </div>
         </div>)}

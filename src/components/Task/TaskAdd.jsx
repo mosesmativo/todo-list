@@ -1,31 +1,34 @@
-import { useReducer } from 'react';
-import { VscAdd } from 'react-icons/vsc';
+import { useReducer } from 'react'
+import { VscAdd } from 'react-icons/vsc'
+import { useAdd } from '../../hooks/useAdd'
 import TaskModal from '../Modals/TaskModal'
-import TodoList from '../TodoList';
-import { useAdd } from '../../hooks/useAdd';
+import TodoList from '../TodoList'
+import { useAll } from '../../hooks/useAll'
+
 
 
 const TaskAdd = () => {
-  const [isTaskFormOpen, setIsTaskFormOpen] = useReducer(
-    (isTaskFormOpen => !isTaskFormOpen),
-    false);
+  const [isOpen, setIsOpen] = useReducer(
+    (isOpen => !isOpen),
+    null)
+
 
   return (
     <>
-      {isTaskFormOpen ? (
-        <TaskModal isOpen={() => setIsTaskFormOpen()} onCreate={useAdd} />
+      {isOpen ? (
+        <TaskModal isOpen={setIsOpen} onCreate={useAdd} />
       ) : (
         <div
           className='addTask__line'
           data-cy='addTask'
-          onClick={() => setIsTaskFormOpen()}>
+          onClick={() => setIsOpen()}>
           <VscAdd className='addTask__icon' />
           <div className='addTask__text'>Add Task</div>
         </div>
       )}
-      <TodoList />
+      <TodoList isOpen={setIsOpen} />
     </>
-  );
-};
+  )
+}
 
-export default TaskAdd;
+export default TaskAdd
