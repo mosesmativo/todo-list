@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './button.css';
+import '../../src/App.scss';
 
 /**
  * Primary UI component for user interaction

@@ -1,5 +1,5 @@
 import { InputField } from "../components/Inputs/InputField";
-import "../components/Inputs/Inputs.css";
+import "../components/Inputs/Inputs.scss";
 
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction

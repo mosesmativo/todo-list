@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-sort-props */
 import PropTypes from 'prop-types';
-import './Inputs.css';
+import './Inputs.scss';
 
 export const InputField = ({ id, label, name, type, onChange, value, options, ...props }) => {
 
@@ -17,29 +18,29 @@ export const InputField = ({ id, label, name, type, onChange, value, options, ..
   };
 
   return (
-    <div>
+    <div id="inputcomponent">
       {label ? <label htmlFor={id}>{label}</label> : ""}
 
       {/* Input field type Text */}
       {type === 'text' && (
-        <input className="form-control" id={name} name={name} onChange={onChange} type="text" value={value} />
+        <input className="form-control" id={name} name={name} onChange={onChange} type="text" value={value} data-testid="inputcomponent" />
       )}
       {type === 'date' && (
-        <input className="taskForm__select" id={name} name={name} onChange={onChange} type="date" value={value} />
+        <input className="taskForm__select" id={name} name={name} onChange={onChange} type="date" value={value} data-testid="inputcomponent" />
       )}
 
       {type === 'checkbox' && (
-        <label className='checkbox'><input className="form-check" data-cy='checkbox' id={id} name={name} onChange={onChange} type="checkbox" value={value} /></label>
+        <label className='checkbox'><input className="form-check" data-cy='checkbox' id={id} name={name} onChange={onChange} type="checkbox" value={value} data-testid="inputcomponent" /></label>
       )}
 
       {type === 'select' && (
-        <select className="form-control" id={name} name={name} onChange={onChange} value={value}>
+        <select className="form-control" id={name} name={name} onChange={onChange} value={value} data-testid="inputcomponent">
           {renderOptions()}
         </select>
       )}
 
       {type === 'textarea' && (
-        <textarea className="form-control" id={name} name={name} onChange={onChange} rows={2} value={value} />
+        <textarea className="form-control" id={name} name={name} onChange={onChange} rows={2} value={value} data-testid="inputcomponent" />
       )}
 
     </div>

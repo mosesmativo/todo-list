@@ -1,9 +1,11 @@
 import { BsCalendar4Event } from 'react-icons/bs';
 import PropTypes from 'prop-types'
 
+
 const TaskDueDate = ({ taskAded }) => {
   return (
     <>
+
       <div
         className='task__dueDateContainer'
         onClick={() => { }}>
@@ -18,5 +20,6 @@ const TaskDueDate = ({ taskAded }) => {
 
 TaskDueDate.propTypes = {
   taskAded: PropTypes.object,
+
 }
 export default TaskDueDate;

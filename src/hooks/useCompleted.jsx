@@ -17,7 +17,7 @@ export function useCompleted() {
         }
 
         fetchCompletedItems();
-    }, [completedItems]);
+    }, []);
 
     return completedItems;
 }

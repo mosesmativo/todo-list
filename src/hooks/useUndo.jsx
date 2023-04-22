@@ -14,13 +14,14 @@ export const useUndo = (id) => {
     ]));
 
     try {
-        axios.post('https://todoist.com/API/v9.0/sync', data, Config, { withCredentials: true })
+        axios.post('https://todoist.com/api/v9.0/sync', data, Config, { withCredentials: true })
         toast('Task succesfully Undone!',
             {
                 icon: '👏',
                 style: {
                     borderRadius: '10px',
                     background: 'black',
+                    fontWeight: 'bold',
                     color: '#fff',
                 },
             }

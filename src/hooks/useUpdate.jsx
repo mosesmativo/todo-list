@@ -26,8 +26,10 @@ export const useUpdate = (id, description, title, dueDate) => {
         axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
         toast('Good Job! Keep Going', {
             icon: '👏👏',
-        });
-
+            style: {
+                fontWeight: 'bold',
+            }
+        })
     } catch (e) {
         console.log(e);
         toast.error('Sorry something went wrong!');

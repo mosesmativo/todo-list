@@ -1,0 +1,162 @@
+@import "../../_variables.scss";
+
+//Task
+.task {
+  @include no-select();
+  padding: 4px 0;
+  cursor: pointer;
+
+  .task__row {
+    @include va;
+    display: grid;
+    grid-template-columns: 30px auto 50px;
+    grid-template-areas: "start center end";
+  }
+
+  .task__name {
+    grid-area: center;
+  }
+
+  .task__icons {
+    grid-area: end;
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    color: $color-grey-5;
+    font-size: 16px;
+  }
+
+  .task__description {
+    @include va;
+    @include text-small;
+    grid-area: center;
+    margin: 3px 0;
+  }
+
+  .task__dueDateContainer {
+    @include va;
+    @include text-small();
+    grid-area: center;
+
+    .task__dueDateIcon {
+      @include va;
+      font-size: 11px;
+      margin: 3px 5px 3px 0px;
+    }
+  }
+}
+
+.task:hover .task__icons {
+  display: grid;
+}
+
+// TaskAdd
+.addTask__line {
+  @include va;
+  display: grid;
+  grid-template-columns: 30px auto;
+  grid-template-areas: "start center";
+
+  .addTask__icon {
+    grid-area: "start";
+    height: 18px;
+    width: 18px;
+    padding: 1px;
+    padding-left: 2px;
+    padding-top: 2px;
+    border-radius: 50%;
+    color: $color-red-1;
+  }
+
+  .addTask__text {
+    grid-area: "center";
+    color: $color-grey-6;
+  }
+}
+
+.addTask__line:hover .addTask__icon {
+  background-color: $color-red-1;
+  color: $color-white;
+}
+
+.addTask__line:hover .addTask__text {
+  color: $color-red-1;
+}
+
+// Task Form
+.taskForm__inputs {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $color-grey-3;
+  border-radius: $border-radius-medium;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  .taskForm__input {
+    border: none;
+  }
+
+  .taskForm__input:focus {
+    outline: none;
+  }
+
+  .taskForm__input::placeholder {
+    color: $color-grey-5;
+  }
+
+  .taskForm__name {
+    margin-bottom: 10px;
+  }
+
+  .taskForm__description {
+    font-size: $font-size-primary;
+    font-weight: 300;
+  }
+
+  .task__selects {
+    @include va;
+
+    .taskForm__select {
+      display: inline-block;
+      width: 130px;
+      height: 30px;
+      margin-right: 8px;
+      padding-top: 3px;
+      padding-left: 10px;
+      cursor: pointer;
+      border: 1px solid $color-grey-3;
+      border-radius: $border-radius-small;
+      font-size: $font-size-small;
+      color: $color-grey-6;
+    }
+
+    .taskForm__select:hover {
+      background-color: $color-grey-1;
+    }
+  }
+}
+
+.taskForm__inputs:focus-within {
+  border: 1px solid $color-grey-5;
+}
+
+.taskForm--inModal > .taskForm__inputs {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid $color-grey-3;
+  padding: 16px;
+  margin: 0;
+}
+
+.taskForm--inModal > .taskForm__inputs > .task__selects {
+  padding-top: 16px;
+}
+
+.taskForm--inModal > .taskForm__buttons {
+  padding: 16px;
+}
+
+.task.active .task__name {
+  grid-area: center;
+  text-decoration: line-through !important;
+  opacity: 0.4;
+}

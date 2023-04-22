@@ -1,4 +1,5 @@
 import { useReducer } from 'react'
+import './Task.scss'
 import { VscTrash, VscEdit } from 'react-icons/vsc'
 import PropTypes from 'prop-types'
 import TaskDueDate from './TaskDueDate'
@@ -55,7 +56,7 @@ const Task = ({ task }) => {
 };
 
 Task.propTypes = {
-  task: PropTypes.array,
+  task: PropTypes.object,
   title: PropTypes.string,
   onDelete: PropTypes.func,
   onClose: PropTypes.func,

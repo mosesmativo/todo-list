@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Modal.scss'
 import PropTypes from 'prop-types'
 import TaskFormButtons from './TaskFormButtons';
 import { InputField } from '../Inputs/InputField';

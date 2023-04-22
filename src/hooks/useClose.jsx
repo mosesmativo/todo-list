@@ -13,7 +13,17 @@ export const useClose = (id) => {
 
     try {
         axios.post('https://api.todoist.com/sync/v9/sync', data, Config, { withCredentials: true })
-        toast.success('Your Task been Closed succesfully!.');
+        toast('Task has been closed succesfully!',
+            {
+                icon: '👏👏',
+                style: {
+                    borderRadius: '10px',
+                    background: '#87A96B',
+                    fontWeight: 'bold',
+                    color: '#fff',
+                },
+            }
+        )
 
     } catch (e) {
         console.log(e);
