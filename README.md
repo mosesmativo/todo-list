@@ -1,12 +1,12 @@
-# Getting Started with Create React App
+# Getting Started With The Ulitimate Todo List 🤖)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was Create react app with Vite [Create React App].
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:5173](http://localhost:3000) to view it in your browser.
@@ -18,6 +18,10 @@ You may also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run storybook`
+
+Storybook is an open-source tool that allows you to develop UI components in isolation for React, Vue, and other UI frameworks. With Storybook, you can view and test your components without having to navigate your app's hierarchy. It also provides a quick and easy way to document your components and their various states.
 
 ### `npm run build`
 
