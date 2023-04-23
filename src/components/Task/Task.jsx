@@ -8,7 +8,7 @@ import { useUpdate } from '../../hooks/useUpdate'
 
 
 
-const Task = ({ task, onDelete, onCheck }) => {
+const Task = ({ task, onDelete, onCheck, isOpen }) => {
 
   // We are dispatching setTaskFormOpen function to toggle the modal
   const [isTaskFormOpen, setIsTaskFormOpen] = useReducer(
@@ -34,12 +34,12 @@ const Task = ({ task, onDelete, onCheck }) => {
           <div
             className='task__name'
             data-cy='task__name'
-            onClick={() => setIsTaskFormOpen()}>
+            onClick={() => isOpen()}>
             {task.content}
           </div>
           <div className='task__icons'>
             <VscTrash data-cy='task__delete' onClick={() => onDelete(task.id)} />
-            {task.completed_at ? null : <VscEdit onClick={() => setIsTaskFormOpen()} />}
+            {task.completed_at ? null : <VscEdit onClick={() => isOpen()} />}
           </div>
         </div>
         <div
@@ -47,7 +47,7 @@ const Task = ({ task, onDelete, onCheck }) => {
           style={{ display: task.description ? 'grid' : 'none' }}>
           <div
             className='task__description'
-            onClick={() => setIsTaskFormOpen()}>
+            onClick={() => isOpen()}>
             {task.description}
           </div>
         </div>
@@ -59,7 +59,7 @@ const Task = ({ task, onDelete, onCheck }) => {
       </div>
 
       <hr />
-      {isTaskFormOpen === true ? <TaskModal isOpen={setIsTaskFormOpen} onEdit={useUpdate} taskToEdit={task} /> : null}
+      {isOpen === true ? <TaskModal isOpen={isOpen} onEdit={useUpdate} taskToEdit={task} /> : null}
     </>
   )
 
@@ -70,7 +70,7 @@ Task.propTypes = {
   title: PropTypes.string,
   onDelete: PropTypes.func,
   onClose: PropTypes.func,
-  onEdit: PropTypes.func,
+  isOpen: PropTypes.func,
   onCheck: PropTypes.func,
 }
 

@@ -42,11 +42,8 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
     } else {
       onCreate(inputTitle, inputDesc, inputDue)
     }
-    if (!inputTitle || !inputDesc || !inputDue) {
-      isOpen(true)
-    } else {
-      isOpen(false)
-    }
+
+    isOpen(false)
 
     setInputTitle("")
     setInputDesc("")
@@ -107,7 +104,7 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
                   />
                 </div>
               </div>
-              <TaskFormButtons disabled={!inputDue ? true : false} id={inputId} setIsTaskFormOpen={isOpen} />
+              <TaskFormButtons disabled={!inputDue ? true : false} id={inputId} isOpen={isOpen} />
             </form>
           </div>
         </div>)}
@@ -120,7 +117,6 @@ TaskModal.propTypes = {
   isOpen: PropTypes.func,
   onCreate: PropTypes.func,
   onEdit: PropTypes.func,
-  task: PropTypes.object,
   taskToEdit: PropTypes.object,
 }
 

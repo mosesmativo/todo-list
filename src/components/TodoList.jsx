@@ -15,7 +15,7 @@ function TodoList({ isOpen }) {
   // This Hook toogles betwen checked items when setIsChecked function is dispatched 
   const [isChecked, setIsChecked] = useReducer(
     (isChecked => !isChecked),
-    null)
+    false)
 
   //Get the deleteItem Function from the Hook 
   const { deleteItem } = useDelete()
@@ -30,7 +30,7 @@ function TodoList({ isOpen }) {
       setUpdatedTask(allTasks)
     }
     allItems()
-  }, [name, isChecked])
+  }, [name, isChecked, isOpen])
 
   // Handle Deleting Tasks using their ID 
   const handleDelete = async (id) => {
