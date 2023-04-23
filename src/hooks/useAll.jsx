@@ -12,6 +12,7 @@ export const useAll = () => {
             const [response1, response2] = await axios.all([complete, incomplete]);
             const combinedData = [...response2.data.items, ...response1.data.items];
 
+
             return combinedData
 
         } catch (e) {

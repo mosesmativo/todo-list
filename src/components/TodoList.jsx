@@ -78,10 +78,8 @@ function TodoList({ isOpen }) {
 
   return (
     <>
-      {updatedTask.length === 0 && "No Todos"}
 
       <TaskAdd onCreate={onCreate} />
-
       <div className="filter-holder">
         <Button
           label="All"
@@ -106,6 +104,9 @@ function TodoList({ isOpen }) {
           <FiEyeOff />
         </Button>
       </div>
+
+      {updatedTask.length === 0 && <h1>Conquer Your Day with this Ultimate Todo List!</h1>}
+
       {name === "all" ?
         updatedTask.map((tasks, i) => (
           <Task
