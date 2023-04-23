@@ -11,7 +11,6 @@ const TaskFormButtons = ({ isOpen, id, disabled }) => {
           label={isOpen && id ? 'Save' : 'Add Task'}
           primary
           type='submit'
-          value=''
         />
         <Button
           label="Cancel"

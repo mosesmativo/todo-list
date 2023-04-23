@@ -1,6 +1,6 @@
 import { Toaster } from 'react-hot-toast'
 import './App.scss'
-import TaskAdd from './components/Task/TaskAdd'
+import TodoList from './components/TodoList'
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 
       <div className='page' data-cy='page'>
         <div className="content">
-          <TaskAdd />
+          <TodoList />
           <Toaster
             position="top-center"
             reverseOrder={false}

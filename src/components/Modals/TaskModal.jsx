@@ -13,7 +13,7 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
 
   // If we are editing an existing task, populate the fields with its data
   if (onEdit) {
-    const { id, content, description, due } = taskToEdit;
+    const { id, content, description, due } = taskToEdit
 
     if (inputTitle === "" && inputDesc === "" && inputDue === "") {
       setInputTitle(content);
@@ -35,15 +35,17 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
     }
   }
 
-  const handleTaskFormSubmit = () => {
+  const handleTaskFormSubmit = (e) => {
+    e.preventDefault()
 
-    if (onEdit) {
-      onEdit(inputId, inputDesc, inputTitle, inputDue)
-    } else {
+    if (!inputId) {
       onCreate(inputTitle, inputDesc, inputDue)
+    } else {
+      onEdit(inputId, inputDesc, inputTitle, inputDue)
     }
 
     isOpen(false)
+
 
     setInputTitle("")
     setInputDesc("")
@@ -104,7 +106,7 @@ const TaskModal = ({ isOpen, onCreate, onEdit, taskToEdit }) => {
                   />
                 </div>
               </div>
-              <TaskFormButtons disabled={!inputDue ? true : false} id={inputId} isOpen={isOpen} />
+              <TaskFormButtons disabled={!inputTitle || !inputDesc || !inputDue ? true : false} id={inputId} isOpen={isOpen} />
             </form>
           </div>
         </div>)}
@@ -117,6 +119,7 @@ TaskModal.propTypes = {
   isOpen: PropTypes.func,
   onCreate: PropTypes.func,
   onEdit: PropTypes.func,
+  task: PropTypes.object,
   taskToEdit: PropTypes.object,
 }
 

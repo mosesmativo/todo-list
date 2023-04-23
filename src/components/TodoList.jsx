@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useReducer } from 'react'
 import { Button } from "./Buttons/Button"
 import Task from './Task/Task'
@@ -6,16 +7,22 @@ import { useDelete } from '../hooks/useDelete'
 import { useClose } from '../hooks/useClose'
 import { useUndo } from '../hooks/useUndo'
 import { useAll } from '../hooks/useAll'
+import { useUpdate } from '../hooks/useUpdate'
+import { useAdd } from '../hooks/useAdd'
+
 import PropTypes from 'prop-types'
+import TaskAdd from './Task/TaskAdd'
 
 function TodoList({ isOpen }) {
   const [name, setType] = useState('all')
   const [updatedTask, setUpdatedTask] = useState([])
 
+
+
   // This Hook toogles betwen checked items when setIsChecked function is dispatched 
   const [isChecked, setIsChecked] = useReducer(
     (isChecked => !isChecked),
-    false)
+    null)
 
   //Get the deleteItem Function from the Hook 
   const { deleteItem } = useDelete()
@@ -30,7 +37,7 @@ function TodoList({ isOpen }) {
       setUpdatedTask(allTasks)
     }
     allItems()
-  }, [name, isChecked, isOpen])
+  }, [name, isChecked])
 
   // Handle Deleting Tasks using their ID 
   const handleDelete = async (id) => {
@@ -51,6 +58,20 @@ function TodoList({ isOpen }) {
     setUpdatedTask(all)
   }
 
+  const onUpdate = async (inputId, inputDesc, inputTitle, inputDue) => {
+    useUpdate(inputId, inputDesc, inputTitle, inputDue)
+    setIsChecked()
+    const all = await fetchAll()
+    setUpdatedTask(all)
+  }
+
+  const onCreate = async (inputTitle, inputDesc, inputDue) => {
+    useAdd(inputTitle, inputDesc, inputDue)
+    setIsChecked()
+    const all = await fetchAll()
+    setUpdatedTask(all)
+  }
+
   // getting complete and incomplete tasks from our custom hooks
   const notcompleted = updatedTask.filter(task => task.checked === false)
   const complete = updatedTask.filter(task => task.checked === true)
@@ -58,6 +79,9 @@ function TodoList({ isOpen }) {
   return (
     <>
       {updatedTask.length === 0 && "No Todos"}
+
+      <TaskAdd onCreate={onCreate} />
+
       <div className="filter-holder">
         <Button
           label="All"
@@ -88,7 +112,9 @@ function TodoList({ isOpen }) {
             isOpen={isOpen}
             key={i}
             onCheck={isCheckedChange}
+            onCreate={onCreate}
             onDelete={handleDelete}
+            onUpdate={onUpdate}
             task={tasks}
           />
         )) : null
@@ -99,7 +125,9 @@ function TodoList({ isOpen }) {
             isOpen={isOpen}
             key={i}
             onCheck={isCheckedChange}
+            onCreate={onCreate}
             onDelete={handleDelete}
+            onUpdate={onUpdate}
             task={tasks}
           />
         )) : null
@@ -110,7 +138,9 @@ function TodoList({ isOpen }) {
             isOpen={isOpen}
             key={i}
             onCheck={isCheckedChange}
+            onCreate={onCreate}
             onDelete={handleDelete}
+            onUpdate={onUpdate}
             task={tasks}
           />
         )) : null

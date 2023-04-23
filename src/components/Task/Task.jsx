@@ -4,16 +4,14 @@ import { VscTrash, VscEdit } from 'react-icons/vsc'
 import PropTypes from 'prop-types'
 import TaskDueDate from './TaskDueDate'
 import TaskModal from '../Modals/TaskModal'
-import { useUpdate } from '../../hooks/useUpdate'
 
 
-
-const Task = ({ task, onDelete, onCheck, isOpen }) => {
+const Task = ({ task, onDelete, onCheck, onUpdate, onCreate }) => {
 
   // We are dispatching setTaskFormOpen function to toggle the modal
   const [isTaskFormOpen, setIsTaskFormOpen] = useReducer(
     (isTaskFormOpen => !isTaskFormOpen),
-    null)
+    false)
 
   return (
     <>
@@ -34,12 +32,12 @@ const Task = ({ task, onDelete, onCheck, isOpen }) => {
           <div
             className='task__name'
             data-cy='task__name'
-            onClick={() => isOpen()}>
+            onClick={() => setIsTaskFormOpen()}>
             {task.content}
           </div>
           <div className='task__icons'>
             <VscTrash data-cy='task__delete' onClick={() => onDelete(task.id)} />
-            {task.completed_at ? null : <VscEdit onClick={() => isOpen()} />}
+            {task.completed_at ? null : <VscEdit onClick={() => setIsTaskFormOpen()} />}
           </div>
         </div>
         <div
@@ -47,7 +45,7 @@ const Task = ({ task, onDelete, onCheck, isOpen }) => {
           style={{ display: task.description ? 'grid' : 'none' }}>
           <div
             className='task__description'
-            onClick={() => isOpen()}>
+            onClick={() => setIsTaskFormOpen()}>
             {task.description}
           </div>
         </div>
@@ -59,7 +57,7 @@ const Task = ({ task, onDelete, onCheck, isOpen }) => {
       </div>
 
       <hr />
-      {isOpen === true ? <TaskModal isOpen={isOpen} onEdit={useUpdate} taskToEdit={task} /> : null}
+      {isTaskFormOpen === true ? <TaskModal isOpen={setIsTaskFormOpen} onCreate={onCreate} onEdit={onUpdate} taskToEdit={task} /> : null}
     </>
   )
 
@@ -67,10 +65,11 @@ const Task = ({ task, onDelete, onCheck, isOpen }) => {
 
 Task.propTypes = {
   task: PropTypes.object,
-  title: PropTypes.string,
+  onUpdate: PropTypes.func,
   onDelete: PropTypes.func,
+  onCreate: PropTypes.func,
   onClose: PropTypes.func,
-  isOpen: PropTypes.func,
+  onEdit: PropTypes.func,
   onCheck: PropTypes.func,
 }
 
