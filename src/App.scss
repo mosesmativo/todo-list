@@ -39,6 +39,9 @@ body {
 
 h1 {
   font-size: $font-size-large;
+  @media screen and (max-width: 720px) {
+    font-size: $font-size-small;
+  }
 }
 
 h2 {
@@ -149,6 +152,10 @@ select::-ms-expand {
     .content__subTitle {
       margin-bottom: 8px;
     }
+  }
+
+  @media screen and (max-width: 720px) {
+    padding: 2.5rem 1rem;
   }
 }
 
