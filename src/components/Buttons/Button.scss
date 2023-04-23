@@ -17,7 +17,7 @@ button {
 }
 
 .button__primary {
-  margin-right: 12px;
+  margin-right: $font-size-small;
   background-color: $color-red-1;
   border: 1px solid $color-red-1;
   color: $color-white;
@@ -39,6 +39,10 @@ button {
 .button_size_small {
   font-size: 12px;
   padding: 10px 16px;
+  @media screen and (max-width: 720px) {
+    padding: 10px 12px;
+    margin-right: 5px;
+  }
 }
 .button_size_medium {
   font-size: 14px;
