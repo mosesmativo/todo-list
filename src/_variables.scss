@@ -21,27 +21,6 @@ $border-radius-small: 3px;
 $border-radius-medium: 10px;
 $border-radius-large: 15px;
 
-@mixin text-small {
-  color: $color-grey-5;
-  font-size: $font-size-small;
-  font-weight: 300;
-}
-
-@mixin no-select {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-@mixin mq($from) {
-  @media (max-width: $from) {
-    @content;
-  }
-}
-
 //Mixins
 @mixin va {
   display: flex;
@@ -61,4 +40,9 @@ $border-radius-large: 15px;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+@mixin mq($from) {
+  @media (max-width: $from) {
+    @content;
+  }
 }
